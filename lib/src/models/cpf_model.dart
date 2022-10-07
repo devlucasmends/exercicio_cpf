@@ -1,5 +1,4 @@
 class CpfModel {
-//declarar a string que vai pegar o cpf
   final String value;
   late final String valueWithlessMask;
   late final List<int> digits;
@@ -9,8 +8,6 @@ class CpfModel {
     digits = convertInDigits(valueWithlessMask);
   }
 
-//regex verificar
-//verificar se eh valido
   String cleanMask(String value) {
     return value.replaceAll(RegExp(r'[^\d]'), '');
   }
@@ -24,51 +21,29 @@ class CpfModel {
       return false;
     }
 
-    var digitOne = 0;
-    var digitTwo = 0;
-    var digitIndex = 0;
-
-    for (var i = 10; i >= 2; i--) {
-      digitOne += digits[digitIndex] * i;
-      digitIndex++;
-    }
-
-    if (digitOne % 11 < 2) {
-      digitOne = 0;
-    } else {
-      digitOne = 11 - (digitOne % 11);
-    }
-
-    digitIndex = 0;
-
-    for (var i = 11; i >= 2; i--) {
-      digitTwo += digits[digitIndex] * i;
-      digitIndex++;
-    }
-
-    if (digitTwo % 11 < 2) {
-      digitTwo = 0;
-    } else {
-      digitTwo = 11 - (digitTwo % 11);
-    }
-
-    print(digitOne);
-    print(digitTwo);
+    var digitOne = checkDigit(10);
+    var digitTwo = checkDigit(11);
 
     if (digitOne != digits[9]) {
+      return false;
+    }
+    if (digitTwo != digits[10]) {
+      return false;
+    }
+    if (digits.toSet().length == 1) {
       return false;
     }
 
     return true;
   }
 
-  int validDigits(int index) {
+  int checkDigit(int index) {
+    var digitIndex = 0;
     var digit = 0;
-    var index = 0;
 
-    for (var i = 10; i >= 2; i--) {
-      digit += digits[index] * i;
-      index++;
+    for (var i = index; i >= 2; i--) {
+      digit += digits[digitIndex] * i;
+      digitIndex++;
     }
 
     if (digit % 11 < 2) {
@@ -76,14 +51,6 @@ class CpfModel {
     } else {
       digit = 11 - (digit % 11);
     }
-    return 0;
+    return digit;
   }
-
-//verificar se não são todos iguais
-//dividir os digitos
-//calcular o primeiro digito verificar
-//testa o digito verificador e o segundo e todos em seguida
-//calcula o segundo digito verificador
-//testa o segundo digito verificador
-
 }

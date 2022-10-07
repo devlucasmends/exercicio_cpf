@@ -5,9 +5,12 @@ void main() {
   var cpf = CpfModel('111.444.777-05');
   print(cpf.isValid());
 
+  cpf = CpfModel('002.861.071-71');
+  print(cpf.isValid());
+
   cpf = CpfModel('040.527.941-84');
   print(cpf.isValid());
 
-  cpf = CpfModel('002.861.071-75');
+  cpf = CpfModel('111.111.111-11');
   print(cpf.isValid());
 }
