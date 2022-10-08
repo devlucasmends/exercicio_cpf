@@ -11,7 +11,7 @@ class CpfGeneratorPage extends StatefulWidget {
 }
 
 class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
-  String valueCpf = 'as';
+  final cpf = CpfModel();
   Color color = Colors.red;
 
   @override
@@ -24,9 +24,7 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  color == Colors.red
-                      ? color = Colors.blue
-                      : color = Colors.red;
+                  cpf.generatorNumbers();
                 });
               },
               style: ButtonStyle(
@@ -42,11 +40,12 @@ class _CpfGeneratorPageState extends State<CpfGeneratorPage> {
             Container(
               height: 50,
               width: 200,
-              color: color,
-              child: Text(
-                valueCpf,
-                style: const TextStyle(color: Colors.black),
-                textAlign: TextAlign.center,
+              color: Colors.grey.shade300,
+              child: Center(
+                child: Text(
+                  cpf.generatorNumbers(),
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             )
           ],

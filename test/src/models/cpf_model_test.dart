@@ -2,8 +2,8 @@ import 'package:exercicio_cpf/src/models/cpf_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  var cpf = CpfModel('111.444.777-05');
-  print(cpf.generatorNumbers());
+  var cpf = CpfModel();
+  // print(cpf.generatorNumbers());
 
   // cpf = CpfModel('002.861.071-71');
   // print(cpf.isValid());

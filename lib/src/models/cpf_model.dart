@@ -1,14 +1,16 @@
 import 'dart:math';
 
 class CpfModel {
-  final String value;
+  // final String value;
   late final String valueWithlessMask;
   late final List<int> digits;
-  late List<int> list;
+  List<int> list = [];
 
-  CpfModel(this.value) {
-    valueWithlessMask = cleanMask(value);
-    digits = convertInDigits(valueWithlessMask);
+  CpfModel() {
+    // this.value
+    // valueWithlessMask = cleanMask(value);
+    // digits = convertInDigits(valueWithlessMask);
+    // generatorNumbers();
   }
 
   String cleanMask(String value) {
@@ -45,7 +47,7 @@ class CpfModel {
     var digit = 0;
 
     for (var i = index; i >= 2; i--) {
-      digit += digits[digitIndex] * i;
+      digit += list[digitIndex] * i;
       digitIndex++;
     }
 
@@ -54,14 +56,30 @@ class CpfModel {
     } else {
       digit = 11 - (digit % 11);
     }
-    print('object');
     return digit;
   }
 
-  List<int> generatorNumbers() {
+  String generatorNumbers() {
+    list = [];
+    String valueCpf;
     for (int i = 0; i < 9; i++) {
       list.add(Random().nextInt(10));
     }
-    return digits;
+    list.add(checkDigit(10));
+    list.add(checkDigit(11));
+    // for (int i = 0; i < list.length; i++) {
+    //   print(list[i]);
+    // }
+    valueCpf = list.toString().replaceAll(RegExp(r'[^\d]'), '');
+    valueCpf =
+        valueCpf.replaceAll(RegExp(r'^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$'), '');
+    print(valueCpf);
+
+    return valueCpf;
+  }
+
+  String formatMask(List<int> value) {
+    for (int i = 0; i < value.length; i++) {}
+    return '';
   }
 }
