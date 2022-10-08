@@ -1,7 +1,10 @@
+import 'dart:math';
+
 class CpfModel {
   final String value;
   late final String valueWithlessMask;
   late final List<int> digits;
+  late List<int> list;
 
   CpfModel(this.value) {
     valueWithlessMask = cleanMask(value);
@@ -51,6 +54,14 @@ class CpfModel {
     } else {
       digit = 11 - (digit % 11);
     }
+    print('object');
     return digit;
+  }
+
+  List<int> generatorNumbers() {
+    for (int i = 0; i < 9; i++) {
+      list.add(Random().nextInt(10));
+    }
+    return digits;
   }
 }
