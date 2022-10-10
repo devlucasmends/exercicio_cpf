@@ -3,6 +3,19 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   var cpf = CpfModel();
+  print(cpf.formatMask([
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+    '1',
+  ]));
   // print(cpf.generatorNumbers());
 
   // cpf = CpfModel('002.861.071-71');

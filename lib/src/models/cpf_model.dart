@@ -71,15 +71,17 @@ class CpfModel {
     //   print(list[i]);
     // }
     valueCpf = list.toString().replaceAll(RegExp(r'[^\d]'), '');
-    valueCpf =
-        valueCpf.replaceAll(RegExp(r'^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$'), '');
-    print(valueCpf);
+    valueCpf = formatMask(valueCpf.split(''));
 
     return valueCpf;
   }
 
-  String formatMask(List<int> value) {
-    for (int i = 0; i < value.length; i++) {}
-    return '';
+  String formatMask(List<String> value) {
+    value.insert(3, '.');
+    value.insert(7, '.');
+    value.insert(11, '-');
+    return value
+        .toString()
+        .replaceAll(RegExp(r'[^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$]'), '');
   }
 }
