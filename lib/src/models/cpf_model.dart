@@ -1,17 +1,9 @@
 import 'dart:math';
 
 class CpfModel {
-  // final String value;
-  late final String valueWithlessMask;
-  late final List<int> digits;
+  // late final String valueWithlessMask;
+  // late final List<int> digits;
   List<int> list = [];
-
-  CpfModel() {
-    // this.value
-    // valueWithlessMask = cleanMask(value);
-    // digits = convertInDigits(valueWithlessMask);
-    // generatorNumbers();
-  }
 
   String cleanMask(String value) {
     return value.replaceAll(RegExp(r'[^\d]'), '');
@@ -19,27 +11,6 @@ class CpfModel {
 
   List<int> convertInDigits(String value) {
     return value.split('').map((e) => int.parse(e)).toList();
-  }
-
-  bool isValid() {
-    if (digits.length != 11) {
-      return false;
-    }
-
-    var digitOne = checkDigit(10);
-    var digitTwo = checkDigit(11);
-
-    if (digitOne != digits[9]) {
-      return false;
-    }
-    if (digitTwo != digits[10]) {
-      return false;
-    }
-    if (digits.toSet().length == 1) {
-      return false;
-    }
-
-    return true;
   }
 
   int checkDigit(int index) {
@@ -67,9 +38,7 @@ class CpfModel {
     }
     list.add(checkDigit(10));
     list.add(checkDigit(11));
-    // for (int i = 0; i < list.length; i++) {
-    //   print(list[i]);
-    // }
+
     valueCpf = list.toString().replaceAll(RegExp(r'[^\d]'), '');
     valueCpf = formatMask(valueCpf.split(''));
 
@@ -84,4 +53,25 @@ class CpfModel {
         .toString()
         .replaceAll(RegExp(r'[^\d{3}\x2E\d{3}\x2E\d{3}\x2D\d{2}$]'), '');
   }
+
+  // bool isValid() {
+  //   if (digits.length != 11) {
+  //     return false;
+  //   }
+
+  //   var digitOne = checkDigit(10);
+  //   var digitTwo = checkDigit(11);
+
+  //   if (digitOne != digits[9]) {
+  //     return false;
+  //   }
+  //   if (digitTwo != digits[10]) {
+  //     return false;
+  //   }
+  //   if (digits.toSet().length == 1) {
+  //     return false;
+  //   }
+
+  //   return true;
+  // }
 }
